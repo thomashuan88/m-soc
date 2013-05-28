@@ -6,7 +6,7 @@ app.configure(function(){
 	app.use(express.static(__dirname + '/public'));
 });
 
-app.get('/', funciton(req,res){
+app.get('/', function(req,res){
 	res.render("index.jade", {layout:false});
 });
 
