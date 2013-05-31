@@ -5,7 +5,6 @@ app.configure(function(){
 	app.set('view engine', 'jade');
 	app.use(express.static(__dirname + '/public'));
 });
-
 app.get('/account/authenticated', function(req,res){
 	if (req.session.loggedIn) {
 		res.send(200);
