@@ -44,7 +44,25 @@ app.post('/login', function(req, res){
 	}
 
 	
-})
+});
+
+app.post('/forgotpassword', function(req,res){
+	var hostname = req.headers.host;
+	var resetPasswordUrl = 'http://' + hostname + '/resetPassword';
+	var email = req.param('email', null);
+	if (null == email || email.length < 1) {
+		res.send(400);
+		return;
+	}
+
+	Account.forgotPassword(email, resetPasswordUrl, function(success){
+		if (success) {
+			res.send(200);
+		} else {
+			res.send(404);
+		}
+	});
+});
 
 app.get('/', function(req,res){
 	res.render("index.jade", {layout:false});
